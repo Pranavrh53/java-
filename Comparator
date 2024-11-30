@@ -1,0 +1,27 @@
+import java.util.Comparator;
+
+public class CustomerSorter implements Comparator<Customer> {
+    @Override
+    public int compare(Customer c1, Customer c2) {
+        // Compare first by First Name
+        int firstNameComparison = c1.getFirstName().compareTo(c2.getFirstName());
+        if (firstNameComparison != 0) {
+            return firstNameComparison;
+        }
+
+        // If First Name is the same, compare by Last Name
+        int lastNameComparison = c1.getLastName().compareTo(c2.getLastName());
+        if (lastNameComparison != 0) {
+            return lastNameComparison;
+        }
+
+        // If Last Name is the same, compare by ID
+        int idComparison = Integer.compare(c1.getId(), c2.getId());
+        if (idComparison != 0) {
+            return idComparison;
+        }
+
+        // If ID is the same, compare by Balance
+        return Double.compare(c1.getBalance(), c2.getBalance());
+    }
+}
